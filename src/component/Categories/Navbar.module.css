@@ -1,0 +1,11 @@
+.categories {
+    display: flex;
+    gap: 1vw;
+    height: fit-content;
+    margin: auto;
+}
+
+.categoryItem {
+    border: 1px solid black;
+    padding: 1rem;
+}

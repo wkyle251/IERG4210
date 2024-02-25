@@ -1,0 +1,52 @@
+.container {
+    justify-content: flex-end;
+    display: flex;
+}
+
+.small:hover~.detail{
+    display: none;
+    
+}
+
+.small {
+    display: block;
+    text-align: end;
+    padding: 2vw;
+    border: 1px solid;
+    margin: 1rem;
+}
+
+.small:hover~.detail{
+    display: block;
+}
+
+.detail {
+    display: none;
+    width: fit-content;
+    padding: 1rem;
+    border: 1px solid;
+    text-align: center;
+    z-index: 999;
+    background: white;
+    position: absolute;
+}
+
+.detail:hover{
+    display: block;
+}
+
+.detail_shoppingCart {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
+}
+
+.shopping_cart_row {
+    display: flex;
+    gap: 1vw;
+}
+
+.shopping_cart_item {
+    width: 5vw;
+}
