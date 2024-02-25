@@ -11,6 +11,7 @@ import Display from '../component/Display/Display'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Link from '@mui/material/Link'
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Mypage = () => {
   const [shoppingCart, setShoppingCart] = useState([])
@@ -58,7 +59,7 @@ const Mypage = () => {
   return (
     <div className={styles.main}>
       <Link href='/admin'>Admin Panel</Link>
-      {categoryList.length > 0 && (
+      {categoryList.length > 0 ? (
         <>
           <div className={styles.header}>
             <Categories categoryList={categoryList} />
@@ -70,7 +71,7 @@ const Mypage = () => {
           />
           <Display shoppingCart={shoppingCart} />
         </>
-      )}
+      ):<CircularProgress />}
     </div>
   )
 }

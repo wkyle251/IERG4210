@@ -18,7 +18,7 @@ import Button from "@mui/material/Button"
 import CardActionArea from "@mui/material/CardActionArea"
 import Link from "next/link";
 import styles from "./Display.module.css"
-
+import EditIcon from '@mui/icons-material/Edit';
 const Item = ({ details }) => {
     const searchParams = useSearchParams()
     const stockName = searchParams.get('pid')
@@ -31,9 +31,17 @@ const Item = ({ details }) => {
                     </Avatar>
                 }
                 action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
+                    <Link href={{
+                        pathname: "/admin", query:
+                        {
+                            cid: details.categories,
+                            pid: details._id,
+                        }
+                    }}>
+                        <IconButton aria-label="settings">
+                            <EditIcon />
+                        </IconButton>
+                    </Link>
                 }
                 title="Shrimp and Chorizo Paella"
                 subheader="September 14, 2016"
