@@ -58,7 +58,7 @@ const Mypage = () => {
   return (
     <div className={styles.main}>
       <Link href='/admin'>Admin Panel</Link>
-      {shoppingCart.length > 0 && (
+      {categoryList.length > 0 && (
         <>
           <div className={styles.header}>
             <Categories categoryList={categoryList} />

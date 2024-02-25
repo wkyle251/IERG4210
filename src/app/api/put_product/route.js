@@ -8,7 +8,15 @@ export async function POST (request) {
   const price = formData.get('price')
   const quantity = formData.get('quantity')
   const description = formData.get('description')
-  const categories = formData.get('categories')
+  const newCategory = formData.get('newCategory')
+  var categories = formData.get('categories')
+
+  if (categories == -1){
+    const res = await db.collection('categories').find({}).sort({cid:-1})
+    const array = await res.toArray()
+    categories = array[0].cid+1
+    await db.collection('categories').insertOne({cid:categories, name:newCategory}) 
+  }
 
   const input = {
     name: name,

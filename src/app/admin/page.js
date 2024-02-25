@@ -18,13 +18,14 @@ const Panel = ({}) => {
     price: 0,
     quantity: 0,
     description: '',
-    categories: ''
+    categories: '',
+    newCategory: '',
   }
 
-  const submit = (val)=>{
+  const submit = val => {
     const formData = new FormData()
     for (const key in val) {
-        formData.append(key, val[key])
+      formData.append(key, val[key])
     }
     fetch('/api/put_product', {
       method: 'POST',
@@ -38,18 +39,21 @@ const Panel = ({}) => {
   return (
     <div className={styles.main}>
       <div className={''}>
-      <div className={styles.panelTitle}>Admin Panel!</div>
-        <Formik
-         initialValues={initialValue}
-        onSubmit={submit}
-        >
+        <div className={styles.panelTitle}>Admin Panel!</div>
+        <Formik initialValues={initialValue} onSubmit={submit}>
           {props => {
-            const {
-              setFieldValue,
-            } = props
+            const { setFieldValue, values } = props
             return (
               <Form className={styles.form}>
                 <MySelect />
+                {values.categories == -1 && (
+                  <Field
+                    name='newCategory'
+                    label='New Category Name'
+                    variant='standard'
+                    component={TextField}
+                  />
+                )}
                 <Field
                   name='name'
                   label='product name'
@@ -88,14 +92,14 @@ const Panel = ({}) => {
                 />
                 <FileUploader
                   handleChange={file => {
-                    setFieldValue('file',file)
+                    setFieldValue('file', file)
                   }}
                   name='file'
                   types={fileTypes}
                   multiple={false}
                   maxSize={5}
                 />
-                <Button type="submit">submit</Button>
+                <Button type='submit'>submit</Button>
               </Form>
             )
           }}

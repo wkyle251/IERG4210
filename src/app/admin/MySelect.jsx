@@ -25,6 +25,7 @@ export default function MySelect() {
                 <MenuItem key={i} value={e.cid}>{e.name}</MenuItem>
 
             ))}
+            <MenuItem value={-1}>**new category**</MenuItem>
         </Field>
     );
 }

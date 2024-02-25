@@ -13,7 +13,7 @@ const Navbar = ({ category, stockName }) => {
                     Home
                 </Link>
                 {category && category != 'All' &&
-                    <Link underline="hover" color="inherit" href={`/${category.cid}`}>
+                    <Link underline="hover" color="inherit" href={`./?cid=${category.cid}`}>
                         {category.name}
                     </Link>
                 }
