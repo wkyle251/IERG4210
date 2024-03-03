@@ -22,7 +22,7 @@
 
 .detail {
     display: none;
-    width: fit-content;
+    width: 50%;
     padding: 1rem;
     border: 1px solid;
     text-align: center;
@@ -39,14 +39,22 @@
     border: 1px solid black;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
+    gap: 0.5rem;
 
 }
 
 .shopping_cart_row {
     display: flex;
     gap: 1vw;
+    align-items: center;
+    margin: auto;
+    width: 100%;
 }
 
 .shopping_cart_item {
-    width: 5vw;
+    width: 200%;
 }
+
+/* .shopping_cart_item {
+    width: 100%;
+} */

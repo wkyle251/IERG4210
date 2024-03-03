@@ -22,6 +22,32 @@ import EditIcon from '@mui/icons-material/Edit';
 const Item = ({ details }) => {
     const searchParams = useSearchParams()
     const stockName = searchParams.get('pid')
+    const originalDate = "2024-03-03T04:53:37.356Z";
+    const dateObject = new Date(originalDate);
+
+    const year = dateObject.getFullYear();
+    const month = String(dateObject.getMonth() + 1).padStart(2, "0");
+    const day = String(dateObject.getDate()).padStart(2, "0");
+
+    const formattedDate = `${year}-${month}-${day}`;
+
+    const handleAdd = () => {
+        var cart = JSON.parse(localStorage.getItem("cart") ?? "[]")
+        const thisItemIndex = cart?.findIndex(e => e.pid == details.pid);
+        if (thisItemIndex == -1) {
+            const thisItem = { ...details }
+            thisItem.num = 1
+            cart.push(thisItem)
+        } else {
+            const thisItem = { ...cart[thisItemIndex] }
+            thisItem.num += 1
+            cart[thisItemIndex] = thisItem
+        }
+        localStorage.setItem("cart", JSON.stringify(cart))
+        window.dispatchEvent(new Event("storage"));
+    }
+
+
     return (
         <Card >
             <CardHeader
@@ -43,8 +69,8 @@ const Item = ({ details }) => {
                         </IconButton>
                     </Link>
                 }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
+                title="Admin"
+                subheader={formattedDate}
             />
             <CardActionArea>
                 <Link href={{
@@ -77,7 +103,7 @@ const Item = ({ details }) => {
                 <IconButton aria-label="share">
                     <ShareIcon />
                 </IconButton>
-                <Button >Add to cart</Button>
+                <Button onClick={handleAdd}>Add to cart</Button>
 
             </CardActions>
 

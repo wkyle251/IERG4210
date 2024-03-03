@@ -1,6 +1,6 @@
 'use client'
 import styles from './page.module.css'
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 
 //components
@@ -19,17 +19,9 @@ const Mypage = () => {
   const searchParams = useSearchParams()
   const category = searchParams.get('cid')
   const stockName = searchParams.get('pid')
+
   useEffect(() => {
-    const cart = category
-      ? shoppingCart.filter(cartItem =>
-          stockName
-            ? cartItem._id == stockName
-            : cartItem.categories == category
-        )
-      : shoppingCart
-    setShoppingCart(cart)
-  }, [category, stockName])
-  useEffect(() => {
+    // initialize
     const categories = axios.post('/api/get_categories').then(res => {
       return res.data
     })
@@ -56,6 +48,19 @@ const Mypage = () => {
       setCategoryList(categories)
     })
   }, [])
+
+  useEffect(() => {
+    // get the stock or category from url param
+    const cart = category
+      ? shoppingCart.filter(cartItem =>
+          stockName
+            ? cartItem._id == stockName
+            : cartItem.categories == category
+        )
+      : shoppingCart
+    setShoppingCart(cart)
+  }, [category, stockName])
+
   return (
     <div className={styles.main}>
       <Link href='/admin'>Admin Panel</Link>

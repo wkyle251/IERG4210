@@ -3,9 +3,20 @@ import React, { useEffect, useState, useMemo } from "react"
 import styles from "./ShoppingList.module.css"
 import Button from "@mui/material/Button"
 import Input from "@mui/material/Input"
+import NumberInput from "./NumberInput"
 
 const DetailShoppingList = ({ shoppingCart }) => {
-    const amount = shoppingCart.reduce((y, x) => x.price * x.quantity + y, 0)
+    const amount = shoppingCart.reduce((y, x) => x.price * x.num + y, 0)
+    const handleChangeNum = (val, pid) => {
+        var cart = JSON.parse(localStorage.getItem("cart") ?? "[]")
+        const thisItemIndex = cart?.findIndex(e => e.pid == pid);
+        if (val == 0)
+            cart.splice(thisItemIndex, 1);
+        else
+            cart[thisItemIndex].num = val
+        localStorage.setItem("cart", JSON.stringify(cart))
+        window.dispatchEvent(new Event("storage"));
+    }
 
     return (
         <div className={styles.detail_shoppingCart}>
@@ -25,8 +36,11 @@ const DetailShoppingList = ({ shoppingCart }) => {
                         {item.price}
                     </div>
                     <div className={styles.shopping_cart_item}>
-                        <Input ></Input>
-                        
+                        <NumberInput
+                            val={item.num}
+                            handleChange={val => handleChangeNum(val, item.pid)}
+                        />
+
                     </div>
                 </div>
             ))}

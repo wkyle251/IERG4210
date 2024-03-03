@@ -30,7 +30,7 @@ const Panel = ({}) => {
         description: '',
         categories: '',
         newCategory: '',
-        pid: null
+        pid: null,
       })
   }, [category, stockName])
 
@@ -40,13 +40,11 @@ const Panel = ({}) => {
     for (const key in val) {
       formData.append(key, val[key])
     }
-    fetch('/api/put_product', {
-      method: 'POST',
-      body: formData
+    axios.post('/api/put_product', formData).then(res => {
+      if (res.data.code == 200) {
+        router.push('/')
+      }
     })
-      .then(response => router.push('/'))
-      .then(data => console.log(data))
-      .catch(error => console.error(error))
   }
 
   const Delete = pid => {

@@ -3,7 +3,7 @@ import React, { useEffect, useState, useMemo } from "react"
 
 const SmallShoppingList = ({ shoppingCart }) => {
 
-    const amount = shoppingCart.reduce((y, x) => x.price * x.quantity + y, 0)
+    const amount = shoppingCart.reduce((y, x) => x.price * x.num + y, 0)
 
     return (
         <div>
