@@ -62,7 +62,7 @@ const Mypage = () => {
       <Link className={styles.adminLink} href='/admin'>
         Admin Panel
       </Link>
-      {categoryList.length > 0 && shoppingCart.length > 0 ? (
+      {categoryList.length > 0 ? (
         <>
           <div className={styles.header}>
             <Categories categoryList={categoryList} />
@@ -72,7 +72,7 @@ const Mypage = () => {
             category={categoryList.find(e => e.cid == category)}
             stockName={shoppingCart.find(e => e._id == stockName)}
           />
-          <Display shoppingCart={shoppingCart} />
+          {shoppingCart.length > 0 && <Display shoppingCart={shoppingCart} />}
         </>
       ) : (
         <CircularProgress />
