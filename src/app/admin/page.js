@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo, Suspense } from 'react'
 import styles from '../page.module.css'
 import { FileUploader } from 'react-drag-drop-files'
 const fileTypes = ['JPG', 'PNG', 'GIF', 'JPEG']
@@ -49,7 +49,7 @@ const Panel = ({}) => {
       .catch(error => console.error(error))
   }
 
-  const Delete = (pid)=>{
+  const Delete = pid => {
     const formData = new FormData()
     formData.append('pid', pid)
     fetch('/api/delete_product', {
@@ -126,7 +126,12 @@ const Panel = ({}) => {
                     {stockName ? (
                       <div>
                         <Button type='submit'>Edit Item</Button>
-                        <Button color='error' onclick={()=>Delete(values.pid)}>Delete Item</Button>
+                        <Button
+                          color='error'
+                          onclick={() => Delete(values.pid)}
+                        >
+                          Delete Item
+                        </Button>
                       </div>
                     ) : (
                       <Button type='submit'>Add Item</Button>
@@ -141,4 +146,8 @@ const Panel = ({}) => {
     </div>
   )
 }
-export default Panel
+export default () => (
+  <Suspense>
+    <Panel />
+  </Suspense>
+)

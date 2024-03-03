@@ -11,7 +11,7 @@ import Display from '../component/Display/Display'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Link from '@mui/material/Link'
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress'
 
 const Mypage = () => {
   const [shoppingCart, setShoppingCart] = useState([])
@@ -71,15 +71,15 @@ const Mypage = () => {
           />
           <Display shoppingCart={shoppingCart} />
         </>
-      ):<CircularProgress />}
+      ) : (
+        <CircularProgress />
+      )}
     </div>
   )
 }
 
-export default function Home ({}) {
-  return (
-    <Suspense>
-      <Mypage />
-    </Suspense>
-  )
-}
+export default () => (
+  <Suspense>
+    <Mypage />
+  </Suspense>
+)
