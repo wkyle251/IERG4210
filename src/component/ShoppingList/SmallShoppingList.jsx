@@ -8,7 +8,7 @@ const SmallShoppingList = ({ shoppingCart }) => {
     return (
         <div>
 
-            ShoppingList ${amount}
+            Shopping List ${amount}
 
         </div>
     )

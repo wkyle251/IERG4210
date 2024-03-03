@@ -11,7 +11,9 @@ export async function POST (request) {
     const description = formData.get('description')
     const newCategory = formData.get('newCategory')
     var categories = formData.get('categories')
-    const pid = formData.get('pid') || uuidv4()
+    var pid = formData.get('pid')
+    if (pid == "null")
+      pid = uuidv4()
     const isEdit = formData.get('edit')
     if (categories == -1) {
       const res = await db.collection('categories').find({}).sort({ cid: -1 })

@@ -1,5 +1,4 @@
 import db from '@/db_connection'
-import { v4 as uuidv4 } from 'uuid'
 
 export async function POST (request) {
   const formData = await request.formData()
@@ -8,5 +7,5 @@ export async function POST (request) {
   var myquery = { pid: pid };
   products.deleteOne(myquery)
 
-  return Response.json({})
+  return Response.json({code:200})
 }

@@ -4,7 +4,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { StyledInputRoot, StyledInput, StyledButton } from './NumberInputStyle';
 
-const NumberInput = ({val,handleChange}) => (
+const NumberInput = ({item,handleChange}) => (
   <BaseNumberInput
     slots={{
       root: StyledInputRoot,
@@ -22,7 +22,8 @@ const NumberInput = ({val,handleChange}) => (
       },
     }}
     min={0}
-    value={val}
+    max={item.quantity}
+    value={item.num}
     onChange={(event, val) => {
       handleChange(val)
     }}

@@ -10,7 +10,8 @@ import Navbar from '../component/Categories/Navbar'
 import Display from '../component/Display/Display'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import Link from '@mui/material/Link'
+// import Link from '@mui/material/Link'
+import Link from 'next/link'
 import CircularProgress from '@mui/material/CircularProgress'
 
 const Mypage = () => {
@@ -19,6 +20,7 @@ const Mypage = () => {
   const searchParams = useSearchParams()
   const category = searchParams.get('cid')
   const stockName = searchParams.get('pid')
+  const [fullProduct, setFullProduct] = useState([])
 
   useEffect(() => {
     // initialize
@@ -37,34 +39,30 @@ const Mypage = () => {
           src: `https://myproductlist.s3.ap-southeast-1.amazonaws.com/${e.filename}`
         }
       }))
-      const cart = category
-        ? items.filter(cartItem =>
-            stockName
-              ? cartItem._id == stockName
-              : cartItem.categories == category
-          )
-        : items
-      setShoppingCart(cart)
+      setFullProduct(items)
       setCategoryList(categories)
     })
   }, [])
 
   useEffect(() => {
     // get the stock or category from url param
-    const cart = category
-      ? shoppingCart.filter(cartItem =>
-          stockName
-            ? cartItem._id == stockName
-            : cartItem.categories == category
-        )
-      : shoppingCart
-    setShoppingCart(cart)
-  }, [category, stockName])
+    console.log(category, stockName)
+    if (category == null) setShoppingCart(fullProduct)
+    else {
+      const cart = fullProduct.filter(cartItem =>
+        stockName ? cartItem._id == stockName : cartItem.categories == category
+      )
+
+      setShoppingCart(cart)
+    }
+  }, [category, stockName, fullProduct])
 
   return (
     <div className={styles.main}>
-      <Link href='/admin'>Admin Panel</Link>
-      {categoryList.length > 0 ? (
+      <Link className={styles.adminLink} href='/admin'>
+        Admin Panel
+      </Link>
+      {categoryList.length > 0 && shoppingCart.length > 0 ? (
         <>
           <div className={styles.header}>
             <Categories categoryList={categoryList} />

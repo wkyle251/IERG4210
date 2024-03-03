@@ -1,8 +1,10 @@
 'use client'
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import React, { useEffect, useState, useMemo } from "react"
+import Link from "next/link";
+
 
 const Navbar = ({ category, stockName }) => {
 

@@ -3,9 +3,16 @@
     gap: 1vw;
     height: fit-content;
     margin: auto;
+    width: 100%;
 }
 
 .categoryItem {
     border: 1px solid black;
     padding: 1rem;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
 }

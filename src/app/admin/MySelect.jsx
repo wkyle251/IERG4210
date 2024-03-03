@@ -17,15 +17,17 @@ export default function MySelect() {
 
 
     return (
-        <Field name={'categories'}
+        <Field
+            name='categories'
             component={Select}
             label="categories"
+            defaultValue={-1}
         >
+            <MenuItem value={-1}>**new category** (input below)</MenuItem>
             {categoryList.map((e, i) => (
                 <MenuItem key={i} value={e.cid}>{e.name}</MenuItem>
 
             ))}
-            <MenuItem value={-1}>**new category**</MenuItem>
         </Field>
     );
 }

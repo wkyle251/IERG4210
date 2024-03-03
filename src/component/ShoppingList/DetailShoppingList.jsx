@@ -37,7 +37,7 @@ const DetailShoppingList = ({ shoppingCart }) => {
                     </div>
                     <div className={styles.shopping_cart_item}>
                         <NumberInput
-                            val={item.num}
+                            item={item}
                             handleChange={val => handleChangeNum(val, item.pid)}
                         />
 

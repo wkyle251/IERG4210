@@ -50,6 +50,7 @@ const Item = ({ details }) => {
 
     return (
         <Card >
+        {console.log(details)}
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
