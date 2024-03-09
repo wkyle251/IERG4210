@@ -43,6 +43,12 @@ const Item = ({ details }) => {
             thisItem.num += 1
             cart[thisItemIndex] = thisItem
         }
+        cart = cart.map(e=>{
+            return {
+                pid: e.pid,
+                num: e.num,
+            }
+        })
         localStorage.setItem("cart", JSON.stringify(cart))
         window.dispatchEvent(new Event("storage"));
     }
@@ -50,7 +56,6 @@ const Item = ({ details }) => {
 
     return (
         <Card >
-        {console.log(details)}
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">

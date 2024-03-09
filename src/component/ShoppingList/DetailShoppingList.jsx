@@ -2,7 +2,6 @@
 import React, { useEffect, useState, useMemo } from "react"
 import styles from "./ShoppingList.module.css"
 import Button from "@mui/material/Button"
-import Input from "@mui/material/Input"
 import NumberInput from "./NumberInput"
 
 const DetailShoppingList = ({ shoppingCart }) => {
@@ -14,6 +13,12 @@ const DetailShoppingList = ({ shoppingCart }) => {
             cart.splice(thisItemIndex, 1);
         else
             cart[thisItemIndex].num = val
+        cart = cart.map(e=>{
+            return {
+                pid: e.pid,
+                num: e.num,
+            }
+        })
         localStorage.setItem("cart", JSON.stringify(cart))
         window.dispatchEvent(new Event("storage"));
     }

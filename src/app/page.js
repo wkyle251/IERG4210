@@ -46,7 +46,6 @@ const Mypage = () => {
 
   useEffect(() => {
     // get the stock or category from url param
-    console.log(category, stockName)
     if (category == null) setShoppingCart(fullProduct)
     else {
       const cart = fullProduct.filter(cartItem =>
@@ -66,7 +65,7 @@ const Mypage = () => {
         <>
           <div className={styles.header}>
             <Categories categoryList={categoryList} />
-            <ShoppingList />
+            <ShoppingList products={fullProduct} />
           </div>
           <Navbar
             category={categoryList.find(e => e.cid == category)}

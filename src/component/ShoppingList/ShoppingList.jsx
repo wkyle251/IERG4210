@@ -5,36 +5,21 @@ import styles from "./ShoppingList.module.css"
 import SmallShoppingList from "./SmallShoppingList"
 import DetailShoppingList from "./DetailShoppingList"
 
-const ShoppingList = ({ }) => {
+const ShoppingList = ({ products }) => {
 
-    const [shoppingCart,setShoppingCart] = useState([
-        {
-            "category": "1",
-            "name": "name1",
-            "price": 1,
-            "num": 1,
-        },
-        {
-            "category": "1",
-            "name": "name2",
-            "price": 2,
-            "num": 2,
-        },
-        {
-            "category": "2",
-            "name": "name3",
-            "price": 3,
-            "num": 3,
-        },
-
-    ])
-
-    useEffect(()=>{
-        setShoppingCart(JSON.parse(localStorage.getItem('cart')??"[]"))
-        window.addEventListener('storage', ()=>{
-            setShoppingCart(JSON.parse(localStorage.getItem('cart')??[]))
+    const [shoppingCart, setShoppingCart] = useState([])
+    useEffect(() => {
+        window.addEventListener('storage', () => {
+            const myStorage = JSON.parse(localStorage.getItem('cart') ?? "[]")
+            const parseStorage = myStorage.map(e => {
+                return {
+                    ...e,
+                    ...products.find(item => item.pid == e.pid)
+                }
+            })
+            setShoppingCart(parseStorage)
         });
-    },[])
+    }, [products])
 
     return (
         <div className={styles.container}>
