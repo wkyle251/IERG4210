@@ -8,16 +8,22 @@ import DetailShoppingList from "./DetailShoppingList"
 const ShoppingList = ({ products }) => {
 
     const [shoppingCart, setShoppingCart] = useState([])
+
+    const refreshCart = () => {
+        const myStorage = JSON.parse(localStorage.getItem('cart') ?? "[]")
+        const parseStorage = myStorage.map(e => {
+            return {
+                ...e,
+                ...products.find(item => item.pid == e.pid)
+            }
+        })
+        setShoppingCart(parseStorage)
+    }
+
     useEffect(() => {
+        refreshCart()
         window.addEventListener('storage', () => {
-            const myStorage = JSON.parse(localStorage.getItem('cart') ?? "[]")
-            const parseStorage = myStorage.map(e => {
-                return {
-                    ...e,
-                    ...products.find(item => item.pid == e.pid)
-                }
-            })
-            setShoppingCart(parseStorage)
+            refreshCart()
         });
     }, [products])
 

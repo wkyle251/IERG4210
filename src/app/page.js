@@ -51,7 +51,6 @@ const Mypage = () => {
       const cart = fullProduct.filter(cartItem =>
         stockName ? cartItem._id == stockName : cartItem.categories == category
       )
-
       setShoppingCart(cart)
     }
   }, [category, stockName, fullProduct])
