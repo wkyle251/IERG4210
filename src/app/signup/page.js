@@ -22,7 +22,7 @@ export default function SignUp() {
         const res = await axios.post("/api/signup", val)
         switch (res.data.code) {
             case 200:
-                location.replace('/signin')
+                location.replace('/login')
             case 203:
                 setSubmitting(false)
                 setErrors({
