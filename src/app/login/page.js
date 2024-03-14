@@ -95,10 +95,10 @@ export default function SignInSide() {
                                             type="password"
                                             autoComplete="current-password"
                                         />
-                                        <FormControlLabel
+                                        {/* <FormControlLabel
                                             control={<Checkbox value="remember" color="primary" />}
                                             label="Remember me"
-                                        />
+                                        /> */}
                                         <Button
                                             type="submit"
                                             fullWidth
