@@ -1,3 +1,4 @@
+'use client'
 import { styled } from '@mui/system'
 import { TabsList as BaseTabsList } from '@mui/base/TabsList'
 import { TabPanel as BaseTabPanel } from '@mui/base/TabPanel'

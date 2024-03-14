@@ -1,0 +1,25 @@
+.main {
+    margin: 7rem;
+    min-height: 100vh;
+    border: 1px solid black;
+    padding: 2rem;
+}
+
+.adminLink {
+    color: darkgoldenrod;
+    border: 1px solid black;
+    padding: 1rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.panelTitle {
+    text-align: center;
+    padding: 2rem;
+}
+
+.form {
+    display: grid;
+    gap: 1rem;
+}

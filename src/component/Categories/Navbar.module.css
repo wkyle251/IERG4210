@@ -16,3 +16,7 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
 }
+
+.Navbar{
+    margin: 1rem;
+}

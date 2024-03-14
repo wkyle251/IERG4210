@@ -8,7 +8,21 @@ Please install the package first by
 
 ```bash
 npm i
+#or
+yarn add
 ```
+
+Please make sure you have the correct private.js in your /src path
+
+Please also configure the publickey and private for password verify by
+
+```bash
+openssl genpkey -algorithm RSA -out private_key.pem -aes256
+openssl rsa -pubout -in private_key.pem -out public_key.pem
+openssl rsa -in private_key.pem -out decrypted_private_key.pem
+```
+
+Then, copy the installed path to private.js
 
 after, run the development server:
 
@@ -36,6 +50,18 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+
+## Deploy details
+
+1. Please make sure you have private.js file in your /src
+2. make sure you
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
 
 ## Deploy on Vercel
 

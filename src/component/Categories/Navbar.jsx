@@ -1,15 +1,14 @@
 'use client'
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
-// import Link from '@mui/material/Link';
 import React, { useEffect, useState, useMemo } from "react"
 import Link from "next/link";
-
+import styles from "./Navbar.module.css";
 
 const Navbar = ({ category, stockName }) => {
 
     return (
-        <div>
+        <div className={styles.Navbar}>
             <Breadcrumbs aria-label="breadcrumb">
                 <Link underline="hover" color="inherit" href="/">
                     Home

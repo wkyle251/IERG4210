@@ -1,6 +1,6 @@
-'use client'
-import React, { useEffect, useState, useMemo, Suspense } from 'react'
-import styles from '../page.module.css'
+'use server'
+import React, { Suspense } from 'react'
+import styles from './page.module.css'
 import { Tabs } from '@mui/base/Tabs'
 import { Tab, TabPanel, TabsList } from './tabStyle'
 
@@ -8,12 +8,28 @@ import AddProduct from './AddProduct'
 import AddCategory from './AddCategory'
 import Link from 'next/link'
 
-const Panel = ({}) => {
-  return (
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
+import fs from "fs"
+import key from '@/private'
+import { sign, verify } from "jsonwebtoken"
+import Login from '@/component/Main/Login'
+
+const Panel = ({ }) => {
+  const cookieStore = cookies()
+  const token = cookieStore.get('auth')
+
+  var tokenInfo = {
+    username: "Guest",
+    role: "guest"
+  }
+
+  const AdminPage = () => (
     <div className={styles.main}>
       <Link className={styles.adminLink} href='/'>
         Home
       </Link>
+      <Login tokenInfo={tokenInfo} />
       <Tabs defaultValue={1}>
         <TabsList>
           <Tab value={0}>Add/Edit Category</Tab>
@@ -28,8 +44,17 @@ const Panel = ({}) => {
       </Tabs>
     </div>
   )
+
+  if (token) {
+    const publicKey = fs.readFileSync(`${key.privateKeyFile}public_key.pem`);
+    tokenInfo = verify(token.value, publicKey)
+    if (tokenInfo.role = "admin")
+      return <AdminPage />
+  }
+  redirect('/')
+
 }
-export default () => (
+export default async () => (
   <Suspense>
     <Panel />
   </Suspense>
