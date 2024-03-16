@@ -14,6 +14,7 @@ import fs from "fs"
 import key from '@/private'
 import { sign, verify } from "jsonwebtoken"
 import Login from '@/component/Main/Login'
+import ChangePassword from '../user/ChangePassword'
 
 const Panel = ({ }) => {
   const cookieStore = cookies()
@@ -34,12 +35,16 @@ const Panel = ({ }) => {
         <TabsList>
           <Tab value={0}>Add/Edit Category</Tab>
           <Tab value={1}>Add/Edit Product</Tab>
+          <Tab value={2}>Edit Password</Tab>
         </TabsList>
         <TabPanel value={0}>
           <AddCategory />
         </TabPanel>
         <TabPanel value={1}>
           <AddProduct />
+        </TabPanel>
+        <TabPanel value={2}>
+          <ChangePassword tokenInfo={tokenInfo} />
         </TabPanel>
       </Tabs>
     </div>
