@@ -1,7 +1,7 @@
 import styles from './page.module.css'
 import Link from 'next/link'
 import axios from "axios"
-import { Button } from "@mui/material"
+import Button from '@mui/material/Button';
 
 const Login = ({ tokenInfo }) => {
 
@@ -17,9 +17,11 @@ const Login = ({ tokenInfo }) => {
     </Link>
   )
   const LogOutComponent = () => (
-    <Button className={styles.loginLink} onClick={logout}>
-      LogOut
-    </Button>
+    <div className={styles.loginLink}>
+      <Button onClick={logout}>
+        LogOut
+      </Button>
+    </div>
   )
 
   if (tokenInfo.role != "guest")
