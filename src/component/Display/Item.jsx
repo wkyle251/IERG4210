@@ -22,7 +22,7 @@ import EditIcon from '@mui/icons-material/Edit';
 const Item = ({ details }) => {
     const searchParams = useSearchParams()
     const stockName = searchParams.get('pid')
-    const originalDate = "2024-03-03T04:53:37.356Z";
+    const originalDate = details.date;
     const dateObject = new Date(originalDate);
 
     const year = dateObject.getFullYear();

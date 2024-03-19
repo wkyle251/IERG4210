@@ -65,7 +65,9 @@ const MainPage = ({ tokenInfo }) => {
         <Link className={styles.adminLink} href='/user'>
           User Panel
         </Link>}
-      Welcome! {tokenInfo.username}
+      <div>
+        Welcome! {tokenInfo.username}
+      </div>
       {categoryList.length > 0 ? (
         <>
           <div className={styles.header}>
