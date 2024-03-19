@@ -1,5 +1,3 @@
-"use client"
-import React, { useEffect, useState, useMemo } from "react"
 import styles from './page.module.css'
 import Link from 'next/link'
 import axios from "axios"
@@ -24,14 +22,6 @@ const Login = ({ tokenInfo }) => {
     </Button>
   )
 
-  const LoggedComponent = () => (
-    <div className={styles.loginLink}>
-      Welcome! {tokenInfo.username}
-      <Link className={styles.logOut} href='/login'>
-        LogOut
-      </Link>
-    </div>
-  )
   if (tokenInfo.role != "guest")
     return <LogOutComponent />
   return <LoginComponent />
