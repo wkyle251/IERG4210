@@ -15,8 +15,8 @@ const Panel = ({ }) => {
         axios.post('/api/add_category', val).then(res => {
             if (res.data.code == 200) {
                 router.push('/')
-                setSubmitting(false)
             }
+            setSubmitting(false)
         })
     }
 

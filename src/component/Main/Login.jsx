@@ -24,7 +24,7 @@ const Login = ({ tokenInfo }) => {
     </div>
   )
 
-  if (tokenInfo.role != "guest")
+  if (tokenInfo?.role != "guest")
     return <LogOutComponent />
   return <LoginComponent />
 }

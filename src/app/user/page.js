@@ -44,7 +44,7 @@ const Panel = ({ }) => {
     if (token) {
         const publicKey = fs.readFileSync(`${key.privateKeyFile}public_key.pem`);
         tokenInfo = verify(token.value, publicKey)
-        if (tokenInfo.role = "user")
+        if (tokenInfo?.role == "user")
             return <AdminPage />
     }
     return <AdminPage />
