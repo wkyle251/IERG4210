@@ -1,8 +1,21 @@
 import db from '@/db_connection'
 import { v4 as uuidv4 } from 'uuid'
 import uploadS3 from '@/s3'
+import { sign, verify } from "jsonwebtoken"
+
 export async function POST (request) {
   try {
+
+    const privateKey = fs.readFileSync(`${key.privateKeyFile}decrypted_private_key.pem`);
+    const publicKey = fs.readFileSync(`${key.privateKeyFile}public_key.pem`);
+
+    // verify cookies
+    const tokenInfo = verify(token.value, publicKey)
+    const cookieStore = cookies()
+    const token = cookieStore.get('auth')
+    if (!token || tokenInfo?.role != 'admin')
+      return Response.json({ code: 205 })
+
     const formData = await request.formData()
     const file = formData.get('file')
     const name = formData.get('name')

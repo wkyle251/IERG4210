@@ -72,7 +72,7 @@ const MainPage = ({ tokenInfo }) => {
         <>
           <div className={styles.header}>
             <Categories categoryList={categoryList} />
-            <ShoppingList products={fullProduct} />
+            <ShoppingList products={fullProduct} tokenInfo={tokenInfo} />
           </div>
           <Navbar
             category={categoryList.find(e => e.cid == category)}

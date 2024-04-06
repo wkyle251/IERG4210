@@ -22,7 +22,7 @@ export async function POST(request) {
     const pid = formData.get('pid')
     const products = db.collection('products')
     var myquery = { pid: pid };
-    products.deleteOne(myquery)
+    await products.deleteOne(myquery)
 
     return Response.json({ code: 200 })
   } catch (err) {

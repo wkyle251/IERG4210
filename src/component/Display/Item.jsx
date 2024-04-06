@@ -19,6 +19,7 @@ import CardActionArea from "@mui/material/CardActionArea"
 import Link from "next/link";
 import styles from "./Display.module.css"
 import EditIcon from '@mui/icons-material/Edit';
+
 const Item = ({ details }) => {
     const searchParams = useSearchParams()
     const stockName = searchParams.get('pid')
@@ -110,7 +111,7 @@ const Item = ({ details }) => {
                     <ShareIcon />
                 </IconButton>
                 <Button onClick={handleAdd}>Add to cart</Button>
-
+                Quantity: {details.quantity} Left!
             </CardActions>
 
         </Card>

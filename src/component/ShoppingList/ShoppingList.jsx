@@ -5,7 +5,7 @@ import styles from "./ShoppingList.module.css"
 import SmallShoppingList from "./SmallShoppingList"
 import DetailShoppingList from "./DetailShoppingList"
 
-const ShoppingList = ({ products }) => {
+const ShoppingList = ({ products, tokenInfo }) => {
 
     const [shoppingCart, setShoppingCart] = useState([])
 
@@ -37,6 +37,7 @@ const ShoppingList = ({ products }) => {
             <div className={styles.detail}>
                 <DetailShoppingList
                     shoppingCart={shoppingCart}
+                    tokenInfo={tokenInfo}
                 />
             </div>
         </div>

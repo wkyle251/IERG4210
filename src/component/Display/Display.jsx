@@ -23,9 +23,10 @@ const Display = ({ shoppingCart }) => {
             )}
 
         </div>)
+
     const SingleStock = () => (
         <div className={styles.singleStock}>
-            <Item details={shoppingCart[0]}/>
+            <Item details={shoppingCart[0]} />
             <ItemDetail details={shoppingCart[0]} />
         </div>
     )

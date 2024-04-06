@@ -7,6 +7,7 @@ import { Tabs } from '@mui/base/Tabs'
 import { Tab, TabPanel, TabsList } from './tabStyle'
 import Link from 'next/link'
 import Login from '@/component/Main/Login'
+import OrderTable from './OrderTable'
 
 const AdminPage = ({ tokenInfo }) => {
 
@@ -21,6 +22,7 @@ const AdminPage = ({ tokenInfo }) => {
           <Tab value={0}>Add/Edit Category</Tab>
           <Tab value={1}>Add/Edit Product</Tab>
           <Tab value={2}>Edit Password</Tab>
+          <Tab value={3}>Orders</Tab>
         </TabsList>
         <TabPanel value={0}>
           <AddCategory />
@@ -30,6 +32,9 @@ const AdminPage = ({ tokenInfo }) => {
         </TabPanel>
         <TabPanel value={2}>
           <ChangePassword tokenInfo={tokenInfo} />
+        </TabPanel>
+        <TabPanel value={3}>
+          <OrderTable />
         </TabPanel>
       </Tabs>
     </div>
