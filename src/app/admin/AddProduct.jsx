@@ -9,6 +9,7 @@ import { TextField } from 'formik-mui'
 import { Button } from '@mui/material'
 import { useRouter, useSearchParams } from 'next/navigation'
 import axios from 'axios'
+import randomString from '@/randomString'
 
 const Panel = ({ }) => {
     const router = useRouter()
@@ -36,6 +37,7 @@ const Panel = ({ }) => {
     }, [category, stockName])
 
     const submit = val => {
+        val["token"] = randomString(16)
         const formData = new FormData()
         formData.append('edit', stockName ? true : false)
         for (const key in val)
@@ -47,6 +49,7 @@ const Panel = ({ }) => {
     }
 
     const Delete = pid => {
+        val["token"] = randomString(16)
         const formData = new FormData()
         formData.append('pid', pid)
         axios.post('/api/delete_category', formDate).then(res => {

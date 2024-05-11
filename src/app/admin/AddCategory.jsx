@@ -7,11 +7,13 @@ import { TextField } from 'formik-mui'
 import { Button } from '@mui/material'
 import { useRouter, useSearchParams } from 'next/navigation'
 import axios from 'axios'
+import randomString from '@/randomString'
 
 const Panel = ({ }) => {
     const router = useRouter()
 
     const submit = (val, { setSubmitting }) => {
+        val["token"] = randomString(16)
         axios.post('/api/add_category', val).then(res => {
             if (res.data.code == 200) {
                 router.push('/')
@@ -21,6 +23,7 @@ const Panel = ({ }) => {
     }
 
     const Delete = val => {
+        val["token"] = sign(val,"csrf")
         axios.post('/api/delete_category', val).then(res => {
             if (res.data.code == 200) {
                 router.push('/')

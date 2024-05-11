@@ -10,9 +10,9 @@ export async function POST (request) {
     const publicKey = fs.readFileSync(`${key.privateKeyFile}public_key.pem`);
 
     // verify cookies
-    const tokenInfo = verify(token.value, publicKey)
     const cookieStore = cookies()
     const token = cookieStore.get('auth')
+    const tokenInfo = verify(token.value, publicKey)
     if (!token || tokenInfo?.role != 'admin')
       return Response.json({ code: 205 })
 

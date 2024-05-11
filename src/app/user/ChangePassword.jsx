@@ -4,10 +4,12 @@ import { Formik, Form, Field } from 'formik'
 import { TextField } from 'formik-mui'
 import { Button } from '@mui/material'
 import axios from 'axios'
+import randomString from '@/randomString'
 
 const ChangePassword = ({ tokenInfo }) => {
 
     const submit = async (val, { setSubmitting, setErrors }) => {
+        val["token"] = randomString(16)
         const res = await axios.post('/api/change_pass', val)
         switch (res.data.code) {
             case 200:

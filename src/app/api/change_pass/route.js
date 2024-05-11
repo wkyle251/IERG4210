@@ -11,8 +11,8 @@ export async function POST(request) {
         const publicKey = fs.readFileSync(`${key.privateKeyFile}public_key.pem`);
 
         // verify cookies
-        const tokenInfo = verify(token.value, publicKey)
         const cookieStore = cookies()
+        const tokenInfo = verify(token.value, publicKey)
         const token = cookieStore.get('auth')
         if (!token)
             return Response.json({ code: 205 })

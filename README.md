@@ -42,3 +42,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 1. Please make sure you have private.js file in your /src
 2. If you want to access /admin, make sure you login as admin account first
+
+## Account details
+
+1. Create your own user/admin account in signup page
+2. Pre-created account
+    ```bash
+    #admin account: 
+    username: admin@admin.com
+    password: admin
+
+    #user account:
+    username: user@user.com
+    password: user
+    ```
