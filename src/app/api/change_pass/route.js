@@ -12,8 +12,8 @@ export async function POST(request) {
 
         // verify cookies
         const cookieStore = cookies()
-        const tokenInfo = verify(token.value, publicKey)
         const token = cookieStore.get('auth')
+        const tokenInfo = verify(token.value, publicKey)
         if (!token)
             return Response.json({ code: 205 })
 
